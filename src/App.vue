@@ -5,7 +5,7 @@
       <button @click='run()'> @run </button>
       <div class='console'>
           <p class='pconsole'>/**</p>
-          <p class='pconsole indent'>* {{ stringCode }} </p>
+          <p class='pconsole indent' id='demo' >{{ strCode }}</p>
           <p class='pconsole indent'>* /</p>
       </div>
   </div>
@@ -20,7 +20,10 @@ export default {
   },
   data () {
     return {
-      code: '',
+      code: `( function ( ) {
+        let data = [1, 2, 3, 4]
+        return data.filter(item => item >1)
+}( ) )`,
       editorOption: {
         mode: 'text/javascript',
         theme: 'base16-dark',
@@ -34,7 +37,7 @@ export default {
         styleSelectedText: true,
         highlightSelectionMatches: { showToken: /\w/, annotateScrollbar: true }
       },
-      stringCode: 'Function out put will go here.'
+      strCode: 'Function out put will go here.'
     }
   },
   methods: {
@@ -42,26 +45,14 @@ export default {
       this.code = newCode
     },
     run () {
-      let compile = document.createElement('SCRIPT')
-      let textCode = document.createTextNode(this.code)
-      compile.appendChild(textCode)
-      document.body.appendChild(compile)
-      console.log(document.body.appendChild(compile))
-      this.stringCode = compile.appendChild(textCode)
-      console.log('Text :: ', this.stringCode.constructor)
-      console.log('Text :: ', this.stringCode)
-      console.log('Text :: ', this.stringCode)
-      // this.stringCode
-      // $('.console').append('<p class=pconsole indent>' + challengeFunction() +' </p>')
+      console.log(this.code)
+      /*eslint-disable */
+      eval(`this.strCode =` + this.code)
+      console.log(this.strCode)
+      /*eslint-enable */
     }
   },
   computed: {
-    result () {
-      /*eslint-disable */
-      console.log(typeof this.stringCode)
-      return this.stringCode
-      /*eslint-enable */
-    }
   }
 }
 </script>
