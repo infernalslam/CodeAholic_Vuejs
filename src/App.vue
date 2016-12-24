@@ -21,8 +21,8 @@ export default {
   data () {
     return {
       code: `( function ( ) {
-        let data = [1, 2, 3, 4]
-        return data.filter(item => item >1)
+        let data = [ { name: 'Tak'}, { name: '💞' }, { name: 'Mint'} ]
+        return data.map(item => item.name)
 }( ) )`,
       editorOption: {
         mode: 'text/javascript',
@@ -53,6 +53,9 @@ export default {
     }
   },
   computed: {
+  },
+  mounted () {
+    this.run()
   }
 }
 </script>
