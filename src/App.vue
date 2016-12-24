@@ -3,6 +3,7 @@
     <h2> CodeAholic </h2> <br>
       <codemirror :code='code' :options='editorOption' @changed='codeChange'></codemirror>
       <button @click='run()'> @run </button>
+      <!-- <codemirror :code='strCode' :options='editorOption'></codemirror> -->
       <div class='console'>
           <p class='pconsole'>/**</p>
           <p class='pconsole indent' id='demo' >{{ strCode }}</p>
